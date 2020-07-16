@@ -106,8 +106,8 @@ namespace Example.Webapi.Controllers
 
         [HttpPut]
         [Route("api/Example/Person/{id:int}")]
-        public HttpResponseMessage updateName(int id,[FromBody] string newName) {
-            if (this.exists(id))
+        public HttpResponseMessage UpdateName(int id,[FromBody] string newName) {
+            if (this.Exists(id))
             {
                 using (var cnn = new SqlConnection(ExampleController.connetionString))
                 {
@@ -132,7 +132,7 @@ namespace Example.Webapi.Controllers
         {
             using (var cnn = new SqlConnection(ExampleController.connetionString))
             {
-                if (this.exists(id))
+                if (this.Exists(id))
                 {
                     String query = "DELETE FROM Person WHERE ID=@ID;";
                     cnn.Open();
@@ -183,7 +183,7 @@ namespace Example.Webapi.Controllers
             }
         }
 
-        public bool exists(int id)
+        public bool Exists(int id)
         {
             using (var cnn = new SqlConnection(ExampleController.connetionString))
             {
@@ -199,11 +199,11 @@ namespace Example.Webapi.Controllers
 
     public class Person
     {
-        public string firstName;
-        public string lastName;
-        public int height;
-        public double weight;
-        public int personId;
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public int height { get; set; }
+        public double weight { get; set; }
+        public int personId { get; set; }
 
         public Person(int id, string firstName, string lastName, int height, double weight)
         {
@@ -216,10 +216,10 @@ namespace Example.Webapi.Controllers
     }
     public class Car
     {
-        public int carID;
-        public string name;
-        public double maxSpeed;
-        public string color;
+        public int carID { get; set; }
+        public string name { get; set; }
+        public double maxSpeed { get; set; }
+        public string color { get; set; }
         public Car(int ID, string name, double maxSpeed, string color)
         {
             this.carID = ID;
