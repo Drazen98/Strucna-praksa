@@ -11,9 +11,9 @@ using Example.Models;
 
 namespace Example.Webapi.Controllers
 {
-    public class ExampleController : ApiController
+    public class PersonController : ApiController
     {
-        public Service.Service service = new Service.Service();
+        private Service.PersonService service = new Service.PersonService();
        [HttpGet]
         [Route("api/Example/Person")]
         public HttpResponseMessage Get()
@@ -88,14 +88,8 @@ namespace Example.Webapi.Controllers
                 {
                     return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Person Not Found");
                 }
-            }
-        
-
-      
-        
+            }   
     }
-
-   
 }
 
 

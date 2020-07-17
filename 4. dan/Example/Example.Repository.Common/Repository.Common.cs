@@ -7,7 +7,7 @@ using Example.Models;
 
 namespace Example.Repository.Common
 {
-    public interface IRepository
+    public interface IPersonRepository
     {
         List<Person> GetPeople();
         Person GetPerson(int id);

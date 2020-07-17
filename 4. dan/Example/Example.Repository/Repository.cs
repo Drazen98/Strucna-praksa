@@ -9,13 +9,13 @@ using System.Data.SqlClient;
 
 namespace Example.Repository
 {
-    public class Repository : IRepository
+    public class PersonRepository : IPersonRepository
     {
         private static string connetionString = "Data Source=(localdb)\\MSSQLLocalDB;";
 
         public List<Person> GetPeople()
         {
-            using (var cnn = new SqlConnection(Repository.connetionString))
+            using (var cnn = new SqlConnection(PersonRepository.connetionString))
             {
                 var persons = new List<Person>();
                 SqlCommand command = new SqlCommand(
@@ -38,7 +38,7 @@ namespace Example.Repository
         }
         public Person GetPerson(int id)
         {
-            using (var cnn = new SqlConnection(Repository.connetionString))
+            using (var cnn = new SqlConnection(PersonRepository.connetionString))
             {
                 SqlCommand command = new SqlCommand("SELECT ID, FirstName, LastName,Height,Weight FROM Person WHERE ID=@ID;", cnn);
                 command.Parameters.AddWithValue("@ID", id);
@@ -62,7 +62,7 @@ namespace Example.Repository
         {
             try
             {
-                using (var cnn = new SqlConnection(Repository.connetionString))
+                using (var cnn = new SqlConnection(PersonRepository.connetionString))
                 {
                     String query = "INSERT INTO Person (FirstName,LastName,Height,Weight) VALUES (@FirstName,@LastName, @Height,@Weight)";
                     cnn.Open();
@@ -86,7 +86,7 @@ namespace Example.Repository
         {
             if (this.Exists(id))
             {
-                using (var cnn = new SqlConnection(Repository.connetionString))
+                using (var cnn = new SqlConnection(PersonRepository.connetionString))
                 {
                     String query = "UPDATE Person SET FirstName = @name WHERE ID=@ID;";
                     cnn.Open();
@@ -104,7 +104,7 @@ namespace Example.Repository
         }
         public Person DeletePerson(int id)
         {
-            using (var cnn = new SqlConnection(Repository.connetionString))
+            using (var cnn = new SqlConnection(PersonRepository.connetionString))
             {
                 if (this.Exists(id))
                 {
@@ -125,7 +125,7 @@ namespace Example.Repository
         public List<Car> GetPersonsCars(int id)
         {
             if (this.Exists(id)) {
-                using (var cnn = new SqlConnection(Repository.connetionString))
+                using (var cnn = new SqlConnection(PersonRepository.connetionString))
                 {
                     SqlCommand command = new SqlCommand("SELECT Car.ID,Name,MaxSpeed,Color FROM Person RIGHT JOIN PersonCar ON Person.ID = PersonCar.PersonID RIGHT JOIN Car ON PersonCar.CarID = Car.ID WHERE Person.ID = @id;", cnn);
                     command.Parameters.AddWithValue("@ID", id);
@@ -150,7 +150,7 @@ namespace Example.Repository
 
         public bool Exists(int id)
         {
-            using (var cnn = new SqlConnection(Repository.connetionString))
+            using (var cnn = new SqlConnection(PersonRepository.connetionString))
             {
                 SqlCommand command = new SqlCommand("SELECT ID, FirstName, LastName,Height,Weight FROM Person WHERE ID=@ID;", cnn);
                 command.Parameters.AddWithValue("@ID", id);

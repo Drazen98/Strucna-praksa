@@ -7,7 +7,7 @@ using Example.Models;
 
 namespace Example.Service.Common
 {
-    public interface IService
+    public interface IPersonService
     {
         List<PersonNoID> GetPeople();
         PersonNoID GetPerson(int id);

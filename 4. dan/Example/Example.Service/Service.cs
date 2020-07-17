@@ -8,9 +8,9 @@ using Example.Models;
 using AutoMapper;
 namespace Example.Service
 {
-    public class Service : IService
+    public class PersonService : IPersonService
     {
-        private Repository.Repository repository = new Repository.Repository();
+        private Repository.PersonRepository repository = new Repository.PersonRepository();
         public List<PersonNoID> GetPeople()
         {
             var configPerson = new MapperConfiguration(cfg => { cfg.CreateMap<Person, PersonNoID>(); });
