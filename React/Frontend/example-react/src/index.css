@@ -91,3 +91,31 @@ button:hover {
   padding-top: 20px;
 }
 
+.btndelete {
+  background-color: #ff4444;
+  border: none;
+  color: white;
+  padding: 8px 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btnedit {
+  background-color: #33b5e5;
+  border: none;
+  color: white;
+  padding: 8px 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.inputname{
+  float : left;
+  position: relative;
+  max-width: 80%;
+}
+
+.thinp{
+  overflow: hidden;
+  padding-right: .5em;
+}

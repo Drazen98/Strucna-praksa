@@ -58,8 +58,8 @@ namespace Example.Webapi.Controllers
 
         [HttpPut]
         [Route("api/Example/Person/{id:int}")]
-        public async Task<HttpResponseMessage> UpdateName(int id,[FromBody] string newName) {
-            var person = await this.PersonServiceResolver.UpdateName(id, newName);
+        public async Task<HttpResponseMessage> UpdateName(int id,[FromBody] Person newName) {
+            var person = await this.PersonServiceResolver.UpdateName(id, newName.firstName);
             if (person!=null) { 
                     return Request.CreateResponse<String>(HttpStatusCode.OK, "Name updated");
             }

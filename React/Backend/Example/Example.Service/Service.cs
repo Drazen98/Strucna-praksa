@@ -20,27 +20,27 @@ namespace Example.Service
             this.PersonRepositoryResolver = repositoryResolver;
         }
 
-        public async Task<List<PersonNoID>> GetPeople()
+        public async Task<List<Person>> GetPeople()
         {
             var configPerson = new MapperConfiguration(cfg => { cfg.CreateMap<Person, PersonNoID>(); });
             IMapper iMapper = configPerson.CreateMapper();
-            return iMapper.Map<List<Person>, List<PersonNoID>>(await this.PersonRepositoryResolver.GetPeople());
+            return await this.PersonRepositoryResolver.GetPeople();
         }
-        public async Task<PersonNoID> GetPerson(int id)
+        public async Task<Person> GetPerson(int id)
         {
-            return this.MapPersonWithoutID(await this.PersonRepositoryResolver.GetPerson(id));
+            return await this.PersonRepositoryResolver.GetPerson(id);
         }
         public async Task<PersonNoID> AddPerson(Person person)
         {
             return this.MapPersonWithoutID(await this.PersonRepositoryResolver.AddPerson(person));
         }
-        public async Task<PersonNoID> UpdateName(int id, string newName)
+        public async Task<Person> UpdateName(int id, string newName)
         {
-            return MapPersonWithoutID(await this.PersonRepositoryResolver.UpdateName(id, newName));
+            return await this.PersonRepositoryResolver.UpdateName(id, newName);
         }
-        public async Task<PersonNoID> DeletePerson(int id)
+        public async Task<Person> DeletePerson(int id)
         {
-            return MapPersonWithoutID(await this.PersonRepositoryResolver.DeletePerson(id));
+            return await this.PersonRepositoryResolver.DeletePerson(id);
         }
         public async Task<List<CarNoID>> GetPersonsCars(int id)
         {
